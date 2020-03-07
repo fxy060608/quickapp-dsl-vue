@@ -61,6 +61,9 @@ function initPage(page, code, query, globals) {
     globals
   )
 
+  // 执行 onInitPageCallback
+  typeof onInitPageCallback === 'function' && onInitPageCallback(instanceVars)
+
   // 处理代码
   let functionBody
   functionBody = code.toString()
@@ -113,4 +116,9 @@ function handleMenuPressEvent(page) {
   return result
 }
 
-export { initPage, invokePageEvent, handleMenuPressEvent }
+let onInitPageCallback
+function onInitPage(callback) {
+  onInitPageCallback = callback
+}
+
+export { initPage, invokePageEvent, handleMenuPressEvent, onInitPage }

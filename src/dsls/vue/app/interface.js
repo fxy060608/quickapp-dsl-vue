@@ -31,6 +31,9 @@ export function initApp(inst, code) {
     inst.$emit('applc:onCreate')
   }
 
+  // 执行 onInitAppCallback
+  typeof onInitAppCallback === 'function' && onInitAppCallback({ context, inst, instRequireModule })
+
   const instEvaluate = context.quickapp.dock.makeEvaluateBuildScript(null)
 
   // 处理代码
@@ -51,4 +54,9 @@ export function initApp(inst, code) {
 
     invokeScript(globalObjects, functionBody, 'app.js')
   }
+}
+
+let onInitAppCallback
+export function onInitApp(callback) {
+  onInitAppCallback = callback
 }

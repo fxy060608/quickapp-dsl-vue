@@ -4,9 +4,9 @@
 
 import { APP_KEYS } from 'src/shared/events'
 
-import { initApp } from './app/interface'
+import { initApp, onInitApp } from './app/interface'
 
-import { initPage, invokePageEvent, handleMenuPressEvent } from './page/interface'
+import { initPage, invokePageEvent, handleMenuPressEvent, onInitPage } from './page/interface'
 
 import { fireEvent, destroyPage, updatePageActions } from './page/misc'
 
@@ -15,7 +15,9 @@ import context from './context'
 import { VM_KEYS } from './vm/bridge'
 
 export default {
-  init
+  init,
+  onInitApp,
+  onInitPage
 }
 
 function init(quickapp) {

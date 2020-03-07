@@ -32,7 +32,9 @@ const rollInject = {
   // OL环境无assert
   'console.assert': `!${nodeConf.NODE_PHASE === 'ol'} && console.assert`,
   // 提前判断，函数减少入栈出栈
-  'console.trace': `global.Env && global.Env.logLevel === 'trace' && console.trace`
+  'console.trace': `global.Env && global.Env.logLevel === 'trace' && console.trace`,
+  // fixed by xxxxxx
+  'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
 }
 
 // Rollup配置
@@ -43,7 +45,7 @@ const rollConf = {
     var global = this;
     `,
     format: 'umd',
-    sourcemap: true
+    sourcemap: false
   },
   plugins: [
     json(),
@@ -71,11 +73,11 @@ const rollConf = {
   ]
 }
 
-if (nodeConf.NODE_PHASE === 'dv') {
-} else {
-  // Uglify
-  rollConf.plugins.push(terser())
-}
+// if (nodeConf.NODE_PHASE === 'dv') {
+// } else {
+// Uglify
+rollConf.plugins.push(terser())
+// }
 
 if (nodeConf.NODE_PLATFORM === 'h5') {
 } else {
