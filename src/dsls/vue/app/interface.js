@@ -24,6 +24,7 @@ export function initApp(inst, code) {
 
   const instDefine = def => {
     inst.$def = def
+    typeof onDefineAppCallback === 'function' && onDefineAppCallback(def)
   }
 
   const instBootstrap = () => {
@@ -59,4 +60,8 @@ export function initApp(inst, code) {
 let onInitAppCallback
 export function onInitApp(callback) {
   onInitAppCallback = callback
+}
+let onDefineAppCallback
+export function onDefineApp(callback) {
+  onDefineAppCallback = callback
 }

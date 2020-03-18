@@ -4,7 +4,7 @@
 
 import { APP_KEYS } from 'src/shared/events'
 
-import { initApp, onInitApp } from './app/interface'
+import { initApp, onInitApp, onDefineApp } from './app/interface'
 
 import { initPage, invokePageEvent, handleMenuPressEvent, onInitPage } from './page/interface'
 
@@ -17,6 +17,7 @@ import { VM_KEYS } from './vm/bridge'
 export default {
   init,
   onInitApp,
+  onDefineApp,
   onInitPage
 }
 
